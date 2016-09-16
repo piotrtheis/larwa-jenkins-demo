@@ -3,7 +3,7 @@
  <property name="toolsdir" value=""/>
 
  <target name="build"
-         depends="prepare,vendors,lint,phploc-ci,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
+         depends="prepare,vendors,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
          description=""/>
 
  <target name="build-parallel"
@@ -13,6 +13,7 @@
  <target name="tools-parallel" description="Run tools in parallel">
   <parallel threadCount="2">
    <sequential>
+    <antcall target="pdepend"/>
     <antcall target="phpmd-ci"/>
    </sequential>
    <antcall target="phpcpd-ci"/>
@@ -27,6 +28,7 @@
   <delete dir="${basedir}/build/api"/>
   <delete dir="${basedir}/build/coverage"/>
   <delete dir="${basedir}/build/logs"/>
+  <delete dir="${basedir}/build/pdepend"/>
   <delete dir="${basedir}/build/phpdox"/>
   <property name="clean.done" value="true"/>
  </target>
@@ -38,6 +40,7 @@
   <mkdir dir="${basedir}/build/api"/>
   <mkdir dir="${basedir}/build/coverage"/>
   <mkdir dir="${basedir}/build/logs"/>
+  <mkdir dir="${basedir}/build/pdepend"/>
   <mkdir dir="${basedir}/build/phpdox"/>
   <property name="prepare.done" value="true"/>
  </target>
@@ -87,7 +90,16 @@
   </exec>
  </target>
 
-
+ <target name="pdepend"
+         depends="prepare"
+         description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${toolsdir}pdepend">
+   <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+   <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
+   <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+   <arg path="${basedir}/app/controllers" />
+  </exec>
+ </target>
 
  <target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
