@@ -32,3 +32,11 @@ test:
         directory: "app"
     php_parallel_lint:
         directory: "app"
+
+
+success:
+    clean_build:
+        remove:
+            - "phpci.yml"
+            - "phpmd.xml"
+            - "phpunit.xml"
