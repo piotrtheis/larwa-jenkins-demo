@@ -17,4 +17,14 @@ class ExampleTest extends TestCase
         //$this->visit('/')
         //     ->see('Laravel');
     }
+    
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testAssertFalseWithTrue()
+    {
+        $this->assertFalse(true);
+    }
 }
