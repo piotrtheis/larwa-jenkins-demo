@@ -26,7 +26,6 @@ test:
           - "design"
           - "naming"
           - "unusedcode"
-          - "somedir/customruleset.xml"
     php_code_sniffer:
         path: "app"
         standard: "PSR2"
