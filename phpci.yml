@@ -15,14 +15,9 @@ test:
     php_mess_detector:
         path: 'app'
         ignore:
-          - 'vendor'
+            - 'vendor'
         rules:
-          - "cleancode"
-          - "controversial"
-          - "codesize"
-          - "design"
-          - "naming"
-          - "unusedcode"
+            - "phpmd.xml"
     php_code_sniffer:
         path: "app"
         standard: "PSR2"
