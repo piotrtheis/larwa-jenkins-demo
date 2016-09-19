@@ -15,7 +15,8 @@ test:
     php_mess_detector:
         path: 'app'
         ignore:
-            - 'vendor'
+            - 'app/Exceptions'
+            - 'app/Providers/RouteServiceProvider.php'
         rules:
             - "phpmd.xml"
     php_code_sniffer:
