@@ -11,10 +11,7 @@ test:
     php_unit:
         config:
             - "phpunit.xml"
-        directory:
-            - "tests/"
-        run_from: "phpunit/"
-        coverage: "tests/logs/coverage"
+        path: "tests/"
     php_mess_detector:
         path: 'app'
         ignore:
