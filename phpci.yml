@@ -28,4 +28,6 @@ test:
     php_loc:
         directory: "app"
     pdepend:
-        directory: "app
+        directory: "app"
+    php_parallel_lint:
+        directory: "app"
