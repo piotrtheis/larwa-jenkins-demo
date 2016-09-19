@@ -12,6 +12,7 @@ test:
         config:
             - "phpunit.xml"
         path: "tests/"
+        coverage: "tests/logs/coverage"
     php_mess_detector:
         path: 'app'
         ignore:
