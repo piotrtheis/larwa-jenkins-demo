@@ -1,0 +1,35 @@
+build_settings:
+    ignore:
+        - "vendor"
+        - "tests"
+
+setup:
+    composer:
+        action: "install"
+
+test:
+    php_unit:
+        config:
+            - "phpunit.xml"
+        directory:
+            - "tests/"
+        run_from: "phpunit/"
+        coverage: "tests/logs/coverage"
+    php_mess_detector:
+        path: 'app'
+        ignore:
+          - 'vendor'
+        rules:
+          - "cleancode"
+          - "controversial"
+          - "codesize"
+          - "design"
+          - "naming"
+          - "unusedcode"
+          - "somedir/customruleset.xml"
+    php_code_sniffer:
+        path: "app"
+        standard: "PSR2"
+    php_cpd:
+        standard: "PSR2"
+        path: "app"
